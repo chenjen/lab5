@@ -1,6 +1,47 @@
-/* address-book.js
-    this is where you will add your JavaScript to complete Lab 5
-*/
+$(function(){
+    sortObjArray(Employees.entries, 'last');
+    render(Employees.entries);
+
+     $('.sort-ui .btn').click(function(){
+        var sortBtn = $(this);
+        sortObjArray(Employees.entries, sortBtn.attr('data-sortby'));
+        render(Employees.entries);
+        sortBtn.siblings().removeClass('active');
+        sortBtn.addClass('active');
+    });
+
+
+    $('.sort-ui .btn').popover({
+        content: 'Click to Resort',
+        container: 'body',
+        trigger: 'hover',
+        placement: 'bottom'
+    });
+});
+
+
+function render(entries) {
+    var template = $('.template');
+    var container = $('.address-book');
+    var instance;
+    container.empty();
+    $.each(entries, function(){
+        instance = template.clone();
+        instance.find('.first').html(this.first);
+        instance.find('.last').html(this.last);
+        instance.find('.title').html(this.title);
+        instance.find('.dept').html(this.dept);
+        instance.find('.pic').attr({
+            src: this.pic,
+            alt: 'Picture of ' + this.first + ' ' + this.last
+        });
+
+        instance.removeClass('template');
+        container.append(instance);
+
+    });
+}
+
 
 
 /* sortObjArray()
