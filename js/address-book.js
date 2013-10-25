@@ -9,7 +9,13 @@ $(function(){
         sortBtn.siblings().removeClass('active');
         sortBtn.addClass('active');
     });
-
+        
+    //  $('.sort-ui .btn').popover(function($(this)){
+    //     content: 'Click to Resort by ' + $(this).html(),
+    //     container: 'body',
+    //     trigger: 'hover',
+    //     placement: 'bottom'
+    // });
 });
 
 
@@ -19,20 +25,25 @@ function render(entries) {
     var instance;
     container.hide();
     container.empty();
-    $.each(entries, function(){
-        instance = template.clone();
-        instance.find('.first').html(this.first);
-        instance.find('.last').html(this.last);
-        instance.find('.title').html(this.title);
-        instance.find('.dept').html(this.dept);
-        instance.find('.pic').attr({
-            src: this.pic,
-            alt: 'Picture of ' + this.first + ' ' + this.last
-        });
 
+    $.each(entries, function(){
+    instance = template.clone();
+    for (entries in container) {
+        for (property in this) {
+            instance.find('.' + property);
+            if (property =='pic') {
+                instance.find('.pic').attr({
+                    src: this.pic,
+                    alt: 'Picture of ' + this.first + ' ' + this.last
+                });
+            } else {
+                instance.find('.' + property).html(this[property]);
+            }
+        }
+    }
         instance.removeClass('template');
         container.append(instance);
-        container.fadeIn(500);
+        container.fadeIn(700);
     });
 }
 
