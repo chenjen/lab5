@@ -10,12 +10,6 @@ $(function(){
         sortBtn.addClass('active');
     });
         
-    //  $('.sort-ui .btn').popover(function($(this)){
-    //     content: 'Click to Resort by ' + $(this).html(),
-    //     container: 'body',
-    //     trigger: 'hover',
-    //     placement: 'bottom'
-    // });
 });
 
 
