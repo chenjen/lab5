@@ -10,13 +10,6 @@ $(function(){
         sortBtn.addClass('active');
     });
 
-
-    $('.sort-ui .btn').popover({
-        content: 'Click to Resort',
-        container: 'body',
-        trigger: 'hover',
-        placement: 'bottom'
-    });
 });
 
 
@@ -24,6 +17,7 @@ function render(entries) {
     var template = $('.template');
     var container = $('.address-book');
     var instance;
+    container.hide();
     container.empty();
     $.each(entries, function(){
         instance = template.clone();
@@ -38,7 +32,7 @@ function render(entries) {
 
         instance.removeClass('template');
         container.append(instance);
-
+        container.fadeIn(500);
     });
 }
 
